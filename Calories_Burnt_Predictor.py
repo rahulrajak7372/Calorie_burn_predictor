@@ -2,10 +2,10 @@ import streamlit as st
 import pickle
 import numpy as np
 
-# ✅ Set Page Config
+#  Set Page Config
 st.set_page_config(page_title="🔥 Calorie Burn Predictor", layout="centered")
 
-# ✅ Load Models
+# Load Models
 model_files = {
     "XGBoost Regressor": "model_1.pkl",
     "Linear Regression": "model_2.pkl",
@@ -13,7 +13,7 @@ model_files = {
     "Random Forest Regressor": "model_4.pkl",
 }
 
-# ✅ Custom CSS for a Light Blue Theme
+# Custom CSS for a Light Blue Theme
 st.markdown(f"""
     <style>
         /* 🔹 Light Blue Background */
@@ -39,7 +39,7 @@ st.markdown(f"""
             font-weight: 600;
         }}
 
-        /* ✅ Input Fields - Light Blue with Dark Text */
+        /*  Input Fields - Light Blue with Dark Text */
         .stTextInput, .stNumberInput, .stSelectbox {{
             background-color: #ADD8E6 !important; /* Light Blue */
             color: #000000 !important; /* Black Text */
@@ -48,7 +48,7 @@ st.markdown(f"""
             padding: 12px !important;
         }}
 
-        /* ✅ Button - Gradient Blue */
+        /*  Button - Gradient Blue */
         .stButton>button {{
             width: 100%;
             background: linear-gradient(135deg, #4682B4, #1E90FF); /* Steel Blue to Dodger Blue */
@@ -64,7 +64,7 @@ st.markdown(f"""
             background: linear-gradient(135deg, #1E90FF, #4682B4);
         }}
 
-        /* ✅ Prediction Box - Blue */
+        /*  Prediction Box - Blue */
         .prediction-box {{
             text-align: center;
             font-size: 24px;
@@ -79,13 +79,13 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# ✅ Title (Now Clearly Visible in Dark Blue)
+#  Title (Now Clearly Visible in Dark Blue)
 st.markdown('<h1 class="title-box" style="color: #008000;">🔥 CALORIE BURN PREDICTOR</h1>', unsafe_allow_html=True)
 
-# ✅ Model Selection Dropdown
+#  Model Selection Dropdown
 selected_model = st.selectbox("Select Prediction Model", list(model_files.keys()))
 
-# ✅ Grid Layout for Inputs
+#  Grid Layout for Inputs
 col1, col2 = st.columns(2)
 
 with col1:
@@ -99,7 +99,7 @@ with col2:
     heart_rate = st.number_input("Heart Rate (bpm)", step=1.0, value=90.0)
     body_temp = st.number_input("Body Temperature (°C)", step=0.1, value=36.5)
 
-# ✅ Predict Button
+#  Predict Button
 if st.button("💪 Calculate Calories Burned", key="predict"):
     user_input = np.array([[gender, age, height, weight, exercise_duration, heart_rate, body_temp]])
 
@@ -111,5 +111,5 @@ if st.button("💪 Calculate Calories Burned", key="predict"):
     # Make prediction
     prediction = model.predict(user_input)[0]
 
-    # ✅ Show Prediction in Styled Blue Box
+    #  Show Prediction in Styled Blue Box
     st.markdown(f'<div class="prediction-box">🔥 Estimated Calories Burnt using {selected_model}: {prediction:.2f} kcal</div>', unsafe_allow_html=True)
